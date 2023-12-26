@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+long int power(int a ,int b ,int mod)
+{
+    long long int t;
+    if(b==1)
+        return a;
+    t=power(a, b / 2, mod);
+    if(b%2 == 0)
+        return (t * t) % mod;
+    else
+        return (((t * t) % mod) * a) % mod;
+}
+long long int key(int a,int x,int q)
+{
+    return power(a,x,q);
+}
+int main()
+{
+    int alpha,q,a,x,b,y;
+    printf("enter the prime number and prime root\n");
+    scanf("%d%d",&q,&alpha);
+    printf("enter the private key of a\n");
+    scanf("%d",&x);
+    a=power(alpha,x,q);
+    printf("enter the private key of b\n");
+    scanf("%d",&y);
+    b=power(alpha,y,q);
+    printf("key calculated by a=%lld\n",key(b,x,q));#power
+     printf("key calculated by b=%lld\n",key(a,y,q));
+     return 0;
+}
